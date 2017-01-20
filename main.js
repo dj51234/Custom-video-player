@@ -5,6 +5,8 @@ const progressBar = player.querySelector('.progress-fill');
 const toggle = player.querySelector('.toggle');
 const skipButtons = player.querySelectorAll('button[data-skip]');
 const ranges = player.querySelectorAll('input[type="range"]');
+const volumeRange = player.querySelector('.volume');
+const volumeBtn = player.querySelector('.volume-btn');
 
 function togglePlay() {
   video.paused ? video.play() : video.pause();
@@ -26,6 +28,21 @@ function updateRanges() {
   video[name] = this.value;
 }
 
+function updateVolumeBtn() {
+  if (this.value < 0.05) {
+    console.log('zero')
+      volumeBtn.innerHTML = '<i class="fa fa-volume-off"></i>';
+  }
+  else if (this.value >= .05 && this.value <= .5) {
+    console.log('five');
+    volumeBtn.innerHTML = '<i class="fa fa-volume-down"></i>';
+  }
+  else {
+    console.log('above 5');
+    volumeBtn.innerHTML = '<i class="fa fa-volume-up"></i>';
+  }
+}
+
 function updateProgressBar() {
   const progressFill = (this.currentTime / this.duration) * 100;
   progressBar.style.flexBasis = `${progressFill}%`;
@@ -45,6 +62,9 @@ video.addEventListener('pause',updateBtnContent);
 skipButtons.forEach(button => button.addEventListener('click',skipTime));
 
 video.addEventListener('timeupdate',updateProgressBar);
+
+volumeRange.addEventListener('change',updateVolumeBtn);
+volumeRange.addEventListener('mousemove',updateVolumeBtn);
 
 ranges.forEach(range => range.addEventListener('change',updateRanges))
 ranges.forEach(range => range.addEventListener('mousemove',updateRanges))

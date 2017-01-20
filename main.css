@@ -73,6 +73,7 @@ input[type="range"] {
 
 label, i {
   color: #fff;
+  font-size: 16px;
 }
 
 /* Slider css */
