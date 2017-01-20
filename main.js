@@ -30,15 +30,12 @@ function updateRanges() {
 
 function updateVolumeBtn() {
   if (this.value < 0.05) {
-    console.log('zero')
-      volumeBtn.innerHTML = '<i class="fa fa-volume-off"></i>';
+    volumeBtn.innerHTML = '<i class="fa fa-volume-off"></i>';
   }
   else if (this.value >= .05 && this.value <= .5) {
-    console.log('five');
     volumeBtn.innerHTML = '<i class="fa fa-volume-down"></i>';
   }
   else {
-    console.log('above 5');
     volumeBtn.innerHTML = '<i class="fa fa-volume-up"></i>';
   }
 }
